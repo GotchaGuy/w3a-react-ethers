@@ -14,6 +14,8 @@ function init() {
   provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`);
   // create a new contract object
   contract = new ethers.Contract(contractAddress, contractAbi, provider);
+
+  // *dodati neku read funkciju ovde da se okine
 }
 
 async function connectWallet() {
