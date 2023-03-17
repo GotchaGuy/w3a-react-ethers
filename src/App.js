@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { init, connectWallet, fetchBalance, accountAddress, network, handleAccountsChanged, getContractName } from "./ethers";
 
-init();
-
 function App() {
   const [connected, setConnected] = useState(false);
   const [contractName, setContractName] = useState(false);
