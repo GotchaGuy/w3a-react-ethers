@@ -3,7 +3,6 @@ import NFTMarketplaceABI from "./contract/NFTMarketplaceABI.json";
 
 const contractAddress = "0x57FB190D83b1b01EE24488dF3b5645648BD96c99"; // the address of your contract
 const contractAbi = NFTMarketplaceABI; // the ABI of your contract
-// const REACT_APP_INFURA_API_KEY = "cbbe4492df7f47ce9534ac85405cff81";
 
 let provider = null;
 let signer = null;
@@ -14,9 +13,8 @@ let network = {};
 async function init() {
   // create a new provider object
   provider = new ethers.providers.Web3Provider(window.ethereum, "any"); // if we want to allow any network
-  // provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${REACT_APP_INFURA_API_KEY}`);
+  // provider = new ethers.providers.JsonRpcProvider(`https://goerli.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`);
 
-  // ${process.env.REACT_APP_INFURA_API_KEY}`
   // create a new contract object
   contract = new ethers.Contract(contractAddress, contractAbi, provider);
   // get network info
@@ -41,6 +39,7 @@ async function connectWallet() {
 function handleAccountsChanged(accounts) {
   if (accounts.length === 0) {
     window.location.reload();
+    // or reset all relevant state
 
   } else if (accounts[0] !== accountAddress) {
     console.log("accountAddress before", accountAddress);
