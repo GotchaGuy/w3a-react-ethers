@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { init, provider, connectWallet, fetchBalance, accountAddress, network, handleAccountsChanged, getContractName } from "./ethers";
+import { init, connectWallet, fetchBalance, accountAddress, network, handleAccountsChanged, getContractName } from "./ethers";
 
 init();
 
@@ -9,7 +9,9 @@ function App() {
   const [balance, setBalance] = useState(null);
 
   useEffect(() => {
-    handleGetContractName();
+    init().then(() => {
+      handleGetContractName();
+    })
 
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
@@ -41,8 +43,11 @@ function App() {
   }
 
   async function handleGetContractName() {
+    if(network.name === 'goerli') {
+
       const name = await getContractName();
       setContractName(name);
+    }
   }
 
   return (

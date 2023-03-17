@@ -19,7 +19,6 @@ async function init() {
   // ${process.env.REACT_APP_INFURA_API_KEY}`
   // create a new contract object
   contract = new ethers.Contract(contractAddress, contractAbi, provider);
-
   // get network info
   await getNetwork();
 }
@@ -42,6 +41,7 @@ async function connectWallet() {
 function handleAccountsChanged(accounts) {
   if (accounts.length === 0) {
     window.location.reload();
+
   } else if (accounts[0] !== accountAddress) {
     console.log("accountAddress before", accountAddress);
     accountAddress = accounts[0];
