@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { init, connectWallet, signer, getContract, fetchBalance, accountAddress, network, handleAccountsChanged } from "./ethers";
+import { init, provider, connectWallet, fetchBalance, accountAddress, network, handleAccountsChanged, getContractName } from "./ethers";
 
 init();
 
 function App() {
-  const [balance, setBalance] = useState(null);
   const [connected, setConnected] = useState(false);
-  const [changedAddress, setChangedAddress] = useState("");
+  const [contractName, setContractName] = useState(false);
+  const [balance, setBalance] = useState(null);
 
   useEffect(() => {
+    handleGetContractName();
+
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", (accounts) => {
         handleAccountsChanged(accounts);
       });
 
-      window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+      window.ethereum.on("chainChanged", (_chainId) => window.location.reload());
     }
   }, []);
 
@@ -38,10 +40,16 @@ function App() {
     }
   }
 
+  async function handleGetContractName() {
+      const name = await getContractName();
+      setContractName(name);
+  }
+
   return (
     <div>
-      <h1>Balance: {balance}</h1>
-      <h1>Account: {accountAddress}</h1>
+      <h1>{contractName}</h1>
+      <h2>Balance: {balance}</h2>
+      <h2>Account: {accountAddress}</h2>
       {!connected && <button onClick={handleConnectWallet}>Connect Wallet</button>}
       {connected && (
         <>
