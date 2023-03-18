@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import NFTMarketplaceABI from "./contract/NFTMarketplaceABI.json";
 
-const contractAddress = "0x57FB190D83b1b01EE24488dF3b5645648BD96c99"; // the address of your contract
+const contractAddress = "0x3FfDf07919352322F718B23Cf6F9A38D96db8F8f"; // the address of your contract
 const contractAbi = NFTMarketplaceABI; // the ABI of your contract
 
 let provider = null;

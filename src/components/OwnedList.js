@@ -19,7 +19,7 @@ export default function OwnedList() {
   return (
     <section className='section owned-list-wrapper'>
           <h2>OwnedList</h2>
-          <div>
+          <div className='owned-card-list'>
             { idList.map(id => {
                 return <NFTCard key={id} id={id}/>
             })}

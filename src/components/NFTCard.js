@@ -47,6 +47,20 @@ export default function NFTCard({id}) {
     }
 
   return (
-    <div>NFTCard</div>
+    <>
+        <div className='card'>
+          <div className='header'>
+          <img src={metadata.image} alt={metadata.name}/>
+          </div>
+          <div className='body'>
+              <h2> {metadata.name} </h2>
+              <p className='desc'> <span>DESC:</span> {metadata.desc}</p>
+              <p className='desc'> <span>OWNER:</span> {metadata.owner}</p>
+          </div>
+          <div className='action'>
+              <button className='button button-main'>List</button>
+          </div>
+        </div>
+      </>
   )
 }
