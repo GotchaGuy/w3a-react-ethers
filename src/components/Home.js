@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { init, connectWallet, fetchBalance, accountAddress, network, handleAccountsChanged, getContractName } from "../ethers";
+import CreateForm from "./CreateForm";
+import ListingList from "./ListingList";
+import OwnedList from "./OwnedList";
 
 function Home() {
   const [connected, setConnected] = useState(false);
@@ -50,11 +53,26 @@ function Home() {
 
   return (
     <div>
+        <section className="nav">
       <h1>{contractName}</h1>
-      <h2>Balance: {balance}</h2>
-      <h2>Account: {accountAddress}</h2>
-      {!connected && <button onClick={handleConnectWallet}>Connect Wallet</button>}
-      {connected && (
+      {!connected && <button className="button button-main" onClick={handleConnectWallet}>Connect Wallet</button>}
+      {connected && 
+      <>
+      <div className="right">
+      <span>{network.name}</span>
+      <button className="button button-alt" onClick={handleDisconnectWallet}>Disconnect Wallet</button>
+      </div>
+      </>
+      }
+        </section>
+
+        <ListingList/>
+        <OwnedList/>
+        { connected && (<CreateForm/>) }
+        
+      
+      
+      {/* {connected && (
         <>
           <span>Network: {network.name}</span>
           {network.name === "goerli" ? (
@@ -67,7 +85,7 @@ function Home() {
           )}
           <button onClick={handleDisconnectWallet}>Disconnect Wallet</button>
         </>
-      )}
+      )} */}
     </div>
   );
 }

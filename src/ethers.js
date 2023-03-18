@@ -75,11 +75,21 @@ async function fetchBalance() {
   }
 }
 
+async function createNFT(uri) {
+  if (uri !== null && signer) {
+    const tx = await getContract().createNFT(uri);
+    console.log("tx", tx);
+    tx.wait();
+    console.log("tx.wait", tx);
+  }
+}
+
 export {
   init,
   signer,
   ethers,
   network,
+  createNFT,
   getContract,
   fetchBalance,
   connectWallet,
