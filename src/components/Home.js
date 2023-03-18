@@ -67,8 +67,13 @@ function Home() {
         </section>
 
         <ListingList/>
-        <OwnedList/>
-        { connected && (<CreateForm/>) }
+       
+        { connected && (
+            <>
+                <OwnedList/>
+                <CreateForm/>
+            </>
+        ) }
         
       
       

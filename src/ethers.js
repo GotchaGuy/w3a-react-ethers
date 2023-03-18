@@ -68,6 +68,18 @@ async function getContractName() {
   return await contract.name();
 }
 
+async function getURI(id) {
+  return await contract.tokenURI(id);
+}
+
+async function getOwnerOf(id) {
+  return await contract.ownerOf(id);
+}
+
+async function getOwnedNfts(address) {
+  return await contract.getOwnedNfts(address);
+}
+
 async function fetchBalance() {
   if (accountAddress !== null && network.name === "goerli") {
     const balance = await getContract().balanceOf(accountAddress);
@@ -86,11 +98,14 @@ async function createNFT(uri) {
 
 export {
   init,
+  getURI,
   signer,
   ethers,
   network,
   createNFT,
+  getOwnerOf,
   getContract,
+  getOwnedNfts,
   fetchBalance,
   connectWallet,
   accountAddress,
