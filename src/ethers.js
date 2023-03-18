@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import NFTMarketplaceABI from "./contract/NFTMarketplaceABI.json";
 
-const contractAddress = "0x57FB190D83b1b01EE24488dF3b5645648BD96c99"; // the address of your contract
+const contractAddress = "0x3FfDf07919352322F718B23Cf6F9A38D96db8F8f"; // the address of your contract
 const contractAbi = NFTMarketplaceABI; // the ABI of your contract
 
 let provider = null;
@@ -68,6 +68,18 @@ async function getContractName() {
   return await contract.name();
 }
 
+async function getURI(id) {
+  return await contract.tokenURI(id);
+}
+
+async function getOwnerOf(id) {
+  return await contract.ownerOf(id);
+}
+
+async function getOwnedNfts(address) {
+  return await contract.getOwnedNfts(address);
+}
+
 async function fetchBalance() {
   if (accountAddress !== null && network.name === "goerli") {
     const balance = await getContract().balanceOf(accountAddress);
@@ -75,12 +87,28 @@ async function fetchBalance() {
   }
 }
 
+async function createNFT(uri) {
+  if (uri !== null && signer) {
+    try {
+      await getContract().createNFT(uri);
+      return true;
+    } catch(e) {
+      console.log("create", e);
+      return false;
+    }
+  }
+}
+
 export {
   init,
+  getURI,
   signer,
   ethers,
   network,
+  createNFT,
+  getOwnerOf,
   getContract,
+  getOwnedNfts,
   fetchBalance,
   connectWallet,
   accountAddress,
