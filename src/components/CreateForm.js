@@ -16,7 +16,7 @@ export default function CreateForm() {
     protocol: "https",  
     headers: {authorization: auth} 
     });
-  console.log("ipfs", ipfs);
+//   console.log("ipfs", ipfs);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
