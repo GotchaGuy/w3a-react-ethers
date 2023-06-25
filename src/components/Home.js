@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { init, connectWallet, network, handleAccountsChanged, getContractName } from "../ethers";
 import ListingList from "./ListingList";
 import OwnedList from "./OwnedList";
+import CreateForm from "./CreateForm";
 
 function Home() {
   const [connected, setConnected] = useState(false);
@@ -60,7 +61,10 @@ function Home() {
         <ListingList/>
        
         { connected && (
-                <OwnedList/>
+            <>
+            <OwnedList/>
+            <CreateForm/>
+            </>
         ) }
     </div>
   );

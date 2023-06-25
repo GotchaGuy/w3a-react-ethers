@@ -87,12 +87,19 @@ async function fetchBalance() {
   }
 }
 
+async function createNFT(uri) {
+    if(uri !== null && signer) {
+        await getContract().createNFT(uri);
+    }
+}
+
 export {
   init,
   getURI,
   signer,
   ethers,
   network,
+  createNFT,
   getOwnerOf,
   getContract,
   getOwnedNfts,
